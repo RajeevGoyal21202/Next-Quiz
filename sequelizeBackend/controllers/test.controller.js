@@ -36,6 +36,7 @@ const getAllTestController = async (req,res) => {
 }
 const deleteTestController = async (req,res) => {
   try{
+    console.log(req.user)
     console.log("connnnntrolllerrr",req.user)
       const response = await testService.deleteExam(req);
       console.log("response",response)

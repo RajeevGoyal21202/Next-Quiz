@@ -5,16 +5,16 @@ export function middleware(request: NextRequest) {
   const userToken = request.cookies.get('accessToken')?.value;
   console.log("ssssssssssssss",userToken)
   console.log("urllllllllllll",request.url)
+  console.log('nextUrl', request.nextUrl)
+  const { pathname } = request.nextUrl;
 
-  if(!userToken) {  
+  if(!userToken && pathname !== '/login') {  
      return NextResponse.redirect(new URL('/login',request.url))
   }
-else if(userToken && request.url === "http://localhost:3000/login"){
-    return NextResponse.redirect("http://localhost:3000/addExam")
+else if(userToken && pathname === "/login"){
+    return NextResponse.redirect(new URL('/addExam',request.url))
  }
- 
-
 }
 export const config = {
-     matcher: ['/addExam',"/addQuestion"],
+     matcher: ['/login','/addExam',"/addQuestion"],
   }   

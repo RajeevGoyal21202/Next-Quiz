@@ -5,6 +5,7 @@ const JWT = require("jsonwebtoken");
 const requireSignIn = async (req, res, next) =>  {
   try {
     console.log("request reached to middleware")
+    // console.log(req)
       const token = req.header('Authorization');
       console.log( req.headers.Authorization)
       if (!token) {
